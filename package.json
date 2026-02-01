@@ -23,7 +23,9 @@
   },
   "dependencies": {
     "@payloadcms/admin-bar": "3.74.0",
+    "@payloadcms/db-postgres": "3.74.0",
     "@payloadcms/email-nodemailer": "3.74.0",
+    "@payloadcms/email-resend": "^3.74.0",
     "@payloadcms/live-preview-react": "3.74.0",
     "@payloadcms/next": "3.74.0",
     "@payloadcms/plugin-ecommerce": "3.74.0",
@@ -62,8 +64,7 @@
     "sharp": "0.34.2",
     "sonner": "^1.7.2",
     "stripe": "18.5.0",
-    "tailwind-merge": "^3.4.0",
-    "@payloadcms/db-postgres": "3.74.0"
+    "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
@@ -101,7 +102,12 @@
   },
   "pnpm": {
     "onlyBuiltDependencies": [
+      "@vercel/git-hooks",
+      "esbuild",
       "sharp"
+    ],
+    "ignoredBuiltDependencies": [
+      "unrs-resolver"
     ]
   }
 }

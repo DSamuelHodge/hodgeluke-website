@@ -1,4 +1,5 @@
 import { postgresAdapter } from '@payloadcms/db-postgres'
+import { resendAdapter } from '@payloadcms/email-resend'
 import {
   BoldFeature,
   EXPERIMENTAL_TableFeature,
@@ -21,6 +22,7 @@ import { Users } from '@/collections/Users'
 import { Footer } from '@/globals/Footer'
 import { Header } from '@/globals/Header'
 import { plugins } from './plugins'
+
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -78,7 +80,11 @@ export default buildConfig({
       ]
     },
   }),
-  //email: nodemailerAdapter(),
+  email: resendAdapter({
+    defaultFromAddress: 'noreply@hodgedomain.com',
+    defaultFromName: 'HodgeLuke',
+    apiKey: process.env.RESEND_API_KEY || '',
+  }),
   endpoints: [],
   globals: [Header, Footer],
   plugins,
@@ -91,3 +97,5 @@ export default buildConfig({
   // make sure to install it and pass it to the config.
   // sharp,
 })
+
+  
