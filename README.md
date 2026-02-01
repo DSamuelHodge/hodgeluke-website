@@ -362,27 +362,4 @@ You can also deploy your app manually, check out the [deployment documentation](
 ## Questions
 
 If you have any issues or questions, reach out to us on [Discord](https://discord.com/invite/payload) or start a [GitHub discussion](https://github.com/payloadcms/payload/discussions).
-
-#.env
-PAYLOAD_SECRET=1d89754d631e33713b02e8cc
-DATABASE_URL=postgresql://postgres.seprlidfrvxvrvkzyjxj:Jwjk683mwc7@aws-1-us-east-2.pooler.supabase.com:6543/postgres
-COMPANY_NAME="HodgeLuke LLC."
-TWITTER_CREATOR="@hodgeluke"
-TWITTER_SITE="https://nextjs.org/commerce"
-SITE_NAME="HodgeLuke"
-PAYLOAD_PUBLIC_SERVER_URL=http://localhost:3000
-NEXT_PUBLIC_SERVER_URL=http://localhost:3000
-
-# Used to preview drafts
-
-PREVIEW_SECRET=HodgeLuke-preview
-
-# Stripe API keys
-
-STRIPE*WEBHOOKS_SIGNING_SECRET=whsec*
-STRIPE_SECRET_KEY=REDACTED_STRIPE_KEY
-NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=REDACTED_STRIPE_PUBLISHABLE_KEY
-
-# Resend API key
-
-RESEND_API_KEY=REDACTED_RESEND_API_KEY
+ 
