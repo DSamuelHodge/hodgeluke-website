@@ -19,7 +19,7 @@ import { CheckoutForm } from '@/components/forms/CheckoutForm'
 import { useAddresses, useCart, usePayments } from '@payloadcms/plugin-ecommerce/client/react'
 import { CheckoutAddresses } from '@/components/checkout/CheckoutAddresses'
 import { CreateAddressModal } from '@/components/addresses/CreateAddressModal'
-import { Address } from '@/payload-types'
+import { Address, Product, Variant, VariantOption } from '@/payload-types'
 import { Checkbox } from '@/components/ui/checkbox'
 import { AddressItem } from '@/components/addresses/AddressItem'
 import { FormItem } from '@/components/forms/FormItem'
@@ -373,14 +373,14 @@ export const CheckoutPage: React.FC = () => {
               if (isVariant) {
                 price = variant?.priceInUSD
 
-                const imageVariant = product.gallery?.find((item: any) => {
-                  if (!item.variantOption) return false
+                const imageVariant = product.gallery?.find((galleryItem: { image: number | typeof Media; variantOption?: (number | null) | VariantOption; id?: string | null }) => {
+                  if (!galleryItem.variantOption) return false
                   const variantOptionID =
-                    typeof item.variantOption === 'object'
-                      ? item.variantOption.id
-                      : item.variantOption
+                    typeof galleryItem.variantOption === 'object'
+                      ? galleryItem.variantOption.id
+                      : galleryItem.variantOption
 
-                  const hasMatch = variant?.options?.some((option: any) => {
+                  const hasMatch = variant?.options?.some((option: number | VariantOption) => {
                     if (typeof option === 'object') return option.id === variantOptionID
                     else return option === variantOptionID
                   })
@@ -408,7 +408,7 @@ export const CheckoutPage: React.FC = () => {
                       {variant && typeof variant === 'object' && (
                         <p className="text-sm font-mono text-primary/50 tracking-widest">
                           {variant.options
-                            ?.map((option: any) => {
+                            ?.map((option: number | VariantOption) => {
                               if (typeof option === 'object') return option.label
                               return null
                             })

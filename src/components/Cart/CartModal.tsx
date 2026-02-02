@@ -17,7 +17,7 @@ import { usePathname } from 'next/navigation'
 import React, { useEffect, useMemo, useState } from 'react'
 
 import { Button } from '@/components/ui/button'
-import { Product } from '@/payload-types'
+import { Product, VariantOption } from '@/payload-types'
 import { DeleteItemButton } from './DeleteItemButton'
 import { EditItemQuantityButton } from './EditItemQuantityButton'
 import { OpenCartButton } from './OpenCart'
@@ -85,14 +85,14 @@ export function CartModal() {
                   if (isVariant) {
                     price = variant?.priceInUSD
 
-                    const imageVariant = product.gallery?.find((item: any) => {
+                    const imageVariant = product.gallery?.find((item) => {
                       if (!item.variantOption) return false
                       const variantOptionID =
                         typeof item.variantOption === 'object'
                           ? item.variantOption.id
                           : item.variantOption
 
-                      const hasMatch = variant?.options?.some((option: any) => {
+                      const hasMatch = variant?.options?.some((option: number | VariantOption) => {
                         if (typeof option === 'object') return option.id === variantOptionID
                         else return option === variantOptionID
                       })
@@ -132,7 +132,7 @@ export function CartModal() {
                             {isVariant && variant ? (
                               <p className="text-sm text-neutral-500 dark:text-neutral-400 capitalize">
                                 {variant.options
-                                  ?.map((option: any) => {
+                                  ?.map((option: number | VariantOption) => {
                                     if (typeof option === 'object') return option.label
                                     return null
                                   })
