@@ -17,7 +17,7 @@ import { usePathname } from 'next/navigation'
 import React, { useEffect, useMemo, useState } from 'react'
 
 import { Button } from '@/components/ui/button'
-import { Product, VariantOption } from '@/payload-types'
+import { Media, Product, VariantOption } from '@/payload-types'
 import { DeleteItemButton } from './DeleteItemButton'
 import { EditItemQuantityButton } from './EditItemQuantityButton'
 import { OpenCartButton } from './OpenCart'
@@ -85,7 +85,7 @@ export function CartModal() {
                   if (isVariant) {
                     price = variant?.priceInUSD
 
-                    const imageVariant = product.gallery?.find((item) => {
+                    const imageVariant = product.gallery?.find((galleryItem: { image: number | Media; variantOption?: (number | null) | VariantOption; id?: string | null }) => {
                       if (!item.variantOption) return false
                       const variantOptionID =
                         typeof item.variantOption === 'object'
